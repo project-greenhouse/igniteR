@@ -1,0 +1,24 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://github.com/project-greenhouse/igniteR/404.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/articles/igniteR-overview.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/articles/index.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/articles/shiny-integration.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/articles/user-authentication.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/authors.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/index.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/news/index.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/change_email.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/change_password.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/create_config.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/delete_account.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/get_user.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/igniteR-package.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/index.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/reset_password.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/send_email_verification.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/sign_in_oauth.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/sign_in_password.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/sign_up_password.html</loc></url>
+<url><loc>https://github.com/project-greenhouse/igniteR/reference/update_user.html</loc></url>
+</urlset>
+
