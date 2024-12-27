@@ -2,4 +2,7 @@
 ^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^Firebase Logo & Product Icons 2$
+^config\.yaml$
+^_pkgdown\.yml$
+^docs/\.nojekyll$
+^\.github$

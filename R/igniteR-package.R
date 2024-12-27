@@ -54,6 +54,6 @@
 #' profile <- getUserData(auth$idToken)
 #' }
 #'
-#' @docType _PACKAGE
+#' @docType package
 #' @name igniteR
 NULL
