@@ -4,7 +4,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/project-greenhouse/igniteR/actions/workflows/R-CMD-check.yml)/badge.svg)](https://github.com/project-greenhouse/igniteR/actions/workflows/R-CMD-check.yml)
+[![R-CMD-check](https://github.com/project-greenhouse/igniteR/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/project-greenhouse/igniteR/actions/workflows/R-CMD-check.yml)
 [![Last-changedate](https://img.shields.io/badge/last%20change-2024--12--27-yellowgreen.svg)](https://github.com/project-greenhouse/igniteR/commits/main)
 [![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://choosealicense.com/licenses/gpl-3.0/)
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-4.1.0-6666ff.svg)](https://cran.r-project.org/)
