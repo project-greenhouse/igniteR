@@ -11,17 +11,18 @@
 #' @examples
 #' \dontrun{
 #' # After user signs in
-#' auth_result <- signInWithPassword("user@example.com", "password")
+#' auth_result <- sign_in_password("user@example.com", "password")
 #' 
 #' # Send verification email
-#' sendEmailVerification(auth_result$idToken)
+#' send_email_verification(auth_result$idToken)
 #' }
 #'
 #' @seealso
-#' \code{\link{getUserData}} to check email verification status
+#' \code{\link{get_user}} to check email verification status
 #'
+#' @import httr logger
 #' @export
-sendEmailVerification <- function(idToken) {
+send_email_verification <- function(idToken) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to send verification email")
   
@@ -52,7 +53,7 @@ sendEmailVerification <- function(idToken) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

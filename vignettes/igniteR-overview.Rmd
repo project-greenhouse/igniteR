@@ -30,12 +30,12 @@ This vignette provides an overview of the package's features and how to set up F
 
 ## Signing Up Users
 ```r
-signUpWithPassword("newuser@example.com", "password123")
+sign_up_password("newuser@example.com", "password123")
 ```
 
 ## Signing In Users
 ```r
-auth <- signInWithPassword("newuser@example.com", "password123")
+auth <- sign_in_password("newuser@example.com", "password123")
 print(auth$idToken)
 ```
 

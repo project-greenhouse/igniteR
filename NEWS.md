@@ -1,3 +1,3 @@
 # igniteR 0.1.0
 
-* Initial CRAN submission.
+* Initial build release. Beta version for testing and feedback.

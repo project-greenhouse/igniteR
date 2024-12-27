@@ -16,11 +16,11 @@
 #' @examples
 #' \dontrun{
 #' email <- "user@example.com"
-#' resetPassword(email)
+#' reset_password(email)
 #' }
 #' @import httr logger
 #' @export
-resetPassword <- function(email) {
+reset_password <- function(email) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to send password reset email to: {email}")
   
@@ -56,7 +56,7 @@ resetPassword <- function(email) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

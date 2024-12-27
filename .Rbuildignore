@@ -4,5 +4,5 @@
 ^\.Rproj\.user$
 ^config\.yaml$
 ^_pkgdown\.yml$
-^docs/\.nojekyll$
+^docs$
 ^\.github$

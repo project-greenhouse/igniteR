@@ -17,12 +17,12 @@
 #' \dontrun{
 #' id_token <- "user-id-token"
 #' new_password <- "newsecurepassword"
-#' response <- changePassword(id_token, new_password)
+#' response <- change_password(id_token, new_password)
 #' print(response)
 #' }
 #' @import httr logger
 #' @export
-changePassword <- function(idToken, newPassword) {
+change_password <- function(idToken, newPassword) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to change password for user.")
   
@@ -64,7 +64,7 @@ changePassword <- function(idToken, newPassword) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

@@ -17,11 +17,11 @@
 #' \dontrun{
 #' provider <- "google.com"
 #' access_token <- "oauth-access-token"
-#' auth_result <- signInWithOAuth(provider, access_token)
+#' auth_result <- sign_in_oauth(provider, access_token)
 #' }
 #' @import httr logger
 #' @export
-signInWithOAuth <- function(provider, accessToken) {
+sign_in_oauth <- function(provider, accessToken) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to sign in with OAuth provider: {provider}")
   
@@ -62,7 +62,7 @@ signInWithOAuth <- function(provider, accessToken) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

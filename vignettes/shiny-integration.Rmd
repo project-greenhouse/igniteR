@@ -58,7 +58,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$sign_in, {
     tryCatch({
-      auth <- signInWithPassword(input$email, input$password)
+      auth <- sign_in_password(input$email, input$password)
       user_data(auth)
       output$welcome_message <- renderText({
         paste("Welcome,", input$email)
@@ -72,7 +72,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$sign_up, {
     tryCatch({
-      signUpWithPassword(input$email, input$password)
+      sign_up_password(input$email, input$password)
       output$auth_message <- renderText({
         "Account created successfully. Please sign in."
       })
@@ -85,7 +85,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$reset, {
     tryCatch({
-      resetPassword(input$email)
+      reset_password(input$email)
       output$auth_message <- renderText({
         "Password reset email sent."
       })
@@ -98,7 +98,7 @@ server <- function(input, output, session) {
 
   output$user_data <- renderPrint({
     req(user_data())
-    getUserData(user_data()$idToken)
+    get_user(user_data()$idToken)
   })
 }
 

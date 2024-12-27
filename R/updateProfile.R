@@ -29,7 +29,7 @@
 #' auth_result <- signInWithPassword("user@example.com", "password")
 #' 
 #' # Update the user's profile
-#' updated_profile <- updateProfile(
+#' updated_profile <- update_user(
 #'   idToken = auth_result$idToken,
 #'   displayName = "New Name",
 #'   photoUrl = "https://example.com/photo.jpg"
@@ -37,10 +37,11 @@
 #' }
 #'
 #' @seealso
-#' \code{\link{getUserData}} for retrieving user profile information
+#' \code{\link{get_user}} for retrieving user profile information
 #'
+#' @import httr logger
 #' @export
-updateProfile <- function(idToken, displayName = NULL, photoUrl = NULL) {
+update_user <- function(idToken, displayName = NULL, photoUrl = NULL) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to update user profile")
   
@@ -84,7 +85,7 @@ updateProfile <- function(idToken, displayName = NULL, photoUrl = NULL) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

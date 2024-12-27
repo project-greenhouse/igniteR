@@ -8,24 +8,23 @@
 #' \itemize{
 #'   \item **User Authentication**:
 #'     \itemize{
-#'       \item \code{\link{signInWithPassword}} - Sign in with email and password
-#'       \item \code{\link{signInWithOAuth}} - Sign in with OAuth providers
-#'       \item \code{\link{signUpWithPassword}} - Create new user accounts
+#'       \item \code{\link{sign_in_password}} - Sign in with email and password
+#'       \item \code{\link{sign_in_oauth}} - Sign in with OAuth providers
+#'       \item \code{\link{sign_up_password}} - Create new user accounts
 #'     }
 #'   \item **Account Management**:
 #'     \itemize{
-#'       \item \code{\link{resetPassword}} - Send password reset emails
-#'       \item \code{\link{changeEmail}} - Update user email
-#'       \item \code{\link{updateProfile}} - Update user profile
-#'       \item \code{\link{deleteAccount}} - Delete user accounts
+#'       \item \code{\link{reset_password}} - Send password reset emails
+#'       \item \code{\link{change_email}} - Update user email
+#'       \item \code{\link{delete_account}} - Delete user accounts
 #'     }
 #'   \item **Email Operations**:
 #'     \itemize{
-#'       \item \code{\link{sendEmailVerification}} - Send email verification
+#'       \item \code{\link{send_email_verification}} - Send email verification
 #'     }
 #'   \item **User Data Management**:
 #'     \itemize{
-#'       \item \code{\link{getUserData}} - Retrieve user profile data
+#'       \item \code{\link{get_user}} - Retrieve user profile data
 #'     }
 #' }
 #'
@@ -36,24 +35,18 @@
 #'   \item Refer to Firebase's REST API documentation for additional details.
 #' }
 #'
-#' @section Installation:
-#' \itemize{
-#'   \item From CRAN: \code{install.packages("igniteR")}
-#'   \item From GitHub: \code{devtools::install_github("your_username/igniteR")}
-#' }
-#'
 #' @examples
 #' \dontrun{
 #' # Sign up a new user
-#' signUpWithPassword("user@example.com", "password123")
+#' sign_up_password("user@example.com", "password123")
 #'
 #' # Sign in
-#' auth <- signInWithPassword("user@example.com", "password123")
+#' auth <- sign_in_password("user@example.com", "password123")
 #'
 #' # Get user profile
-#' profile <- getUserData(auth$idToken)
+#' profile <- get_user(auth$idToken)
 #' }
 #'
-#' @docType package
-#' @name igniteR
-NULL
+#' @keywords internal
+"_PACKAGE"
+

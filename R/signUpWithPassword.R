@@ -22,14 +22,14 @@
 #' \dontrun{
 #' email <- "newuser@example.com"
 #' password <- "newuserpassword"
-#' user_data <- signUpWithPassword(email, password)
+#' user_data <- sign_up_password(email, password)
 #' print(user_data$localId)
 #' }
 #' @import httr logger
 #' @export
-signUpWithPassword <- function(email, password) {
+sign_up_password <- function(email, password) {
   logger::log_appender(logger::appender_file("app.log"))
-  logger::loggerlog_info("Attempting to sign up user with email: {email}")
+  logger::log_info("Attempting to sign up user with email: {email}")
   
   # Retrieve Firebase variables from environment
   project_api_key <- Sys.getenv("FIREBASE_API_KEY")
@@ -56,7 +56,7 @@ signUpWithPassword <- function(email, password) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )
