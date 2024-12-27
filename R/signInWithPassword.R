@@ -19,21 +19,22 @@
 #' @examples
 #' \dontrun{
 #' # In a Shiny app
-#' auth_result <- signInWithPassword(
+#' auth_result <- sign_in_password(
 #'   email = "user@example.com",
 #'   password = "userpassword"
 #' )
 #' 
 #' # Use the token for authenticated requests
-#' user_data <- getUserData(auth_result$idToken)
+#' user_data <- get_user(auth_result$idToken)
 #' }
 #'
 #' @seealso
-#' \code{\link{signUpWithPassword}} for creating new accounts
-#' \code{\link{resetPassword}} for password reset functionality
+#' \code{\link{sign_in_password}} for creating new accounts
+#' \code{\link{reset_password}} for password reset functionality
 #'
+#' @import httr logger
 #' @export
-signInWithPassword <- function(email, password) {
+sign_in_password <- function(email, password) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to sign in user with email: {email}")
   
@@ -60,7 +61,7 @@ signInWithPassword <- function(email, password) {
     stop("'password' must be a non-empty string.")
   }
   
-  firebase_url <- paste0("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=", project_api_key)
+  firebase_url <- paste0("https://identitytoolkit.googleapis.com/v1/accounts:sign_in_password?key=", project_api_key)
   
   # Create the request payload
   payload <- list(
@@ -72,7 +73,7 @@ signInWithPassword <- function(email, password) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

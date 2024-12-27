@@ -15,14 +15,14 @@ This vignette provides examples of user authentication workflows using the `igni
 
 ```r
 # Create a new user account
-signUpWithPassword("user@example.com", "securepassword123")
+sign_up_password("user@example.com", "securepassword123")
 ```
 
 # Signing In
 
 ```r
 # Authenticate an existing user
-auth <- signInWithPassword("user@example.com", "securepassword123")
+auth <- sign_in_password("user@example.com", "securepassword123")
 print(auth$idToken)
 ```
 
@@ -30,7 +30,7 @@ print(auth$idToken)
 
 ```r
 # Get user profile information
-user_data <- getUserData(auth$idToken)
+user_data <- get_user(auth$idToken)
 print(user_data$email)
 ```
 
@@ -38,14 +38,14 @@ print(user_data$email)
 
 ```r
 # Send a password reset email
-resetPassword("user@example.com")
+reset_password("user@example.com")
 ```
 
 # Updating User Profile
 
 ```r
 # Update profile
-updateProfile(
+update_user(
   idToken = auth$idToken,
   displayName = "Updated Name",
   photoUrl = "https://example.com/photo.jpg"

@@ -26,12 +26,12 @@
 #' @examples
 #' \dontrun{
 #' id_token <- "user-id-token"
-#' user_data <- getUserData(id_token)
+#' user_data <- get_user(id_token)
 #' print(user_data$email)
 #' }
 #' @import httr logger
 #' @export
-getUserData <- function(idToken) {
+get_user <- function(idToken) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to retrieve user data")
   
@@ -61,7 +61,7 @@ getUserData <- function(idToken) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

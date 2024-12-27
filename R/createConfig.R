@@ -14,15 +14,18 @@
 #'                   it will be created.
 #' @return A message indicating the successful creation of the file and environment variables.
 #' @examples
-#' createConfig(
+#' \dontrun{
+#' create_config(
 #'   api_key = "example-key",
 #'   projectId = "example-id",
 #'   authDomain = "example-auth",
 #'   storageBucket = "example-bucket"
 #' )
+#' }
+#' 
 #' @import logger yaml
 #' @export
-createConfig <- function(api_key, projectId, authDomain, storageBucket, databaseURL = NULL, appId = NULL, output_dir = ".") {
+create_config <- function(api_key, projectId, authDomain, storageBucket, databaseURL = NULL, appId = NULL, output_dir = ".") {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Starting to create config.yaml...")
   

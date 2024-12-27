@@ -19,11 +19,11 @@
 #' \dontrun{
 #' id_token <- "user-id-token"
 #' new_email <- "newemail@example.com"
-#' result <- changeEmail(id_token, new_email)
+#' result <- change_email(id_token, new_email)
 #' }
 #' @import httr logger
 #' @export
-changeEmail <- function(idToken, newEmail, returnSecureToken = FALSE) {
+change_email <- function(idToken, newEmail, returnSecureToken = FALSE) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to change user email")
   
@@ -65,7 +65,7 @@ changeEmail <- function(idToken, newEmail, returnSecureToken = FALSE) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

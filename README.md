@@ -1,31 +1,27 @@
-# igniteR v0.1.0 <img src="man/figures/shinyIgniteR_hex_cloud_orange.png" align="right" width="120"/>
+# igniteR <img src="man/figures/shinyIgniteR_hex_cloud_orange.png" alt="igniteR logo with a cloud and orange background" align="right" width="120"/>
 
 **Simplified use of Firebase Authentication for Shiny Apps**
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/project-greenhouse/igniteR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/project-greenhouse/igniteR/actions/workflows/R-CMD-check.yaml)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--12--27-yellowgreen.svg)](/commits/master)
-[![license](https://img.shields.io/badge/license-MIT%20+%20file%20LICENSE-lightgrey.svg)](https://choosealicense.com/)
-[![minimal R
-version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-project.org/)
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--12--27-yellowgreen.svg)](https://github.com/project-greenhouse/igniteR/commits/main)
+[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://choosealicense.com/licenses/gpl-3.0/)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-4.1.0-6666ff.svg)](https://cran.r-project.org/)
+[![Project Status: Active – The project is currently in beta or experimental phase.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](https://github.com/project-greenhouse/igniteR/commits/main)
 [![thanks-md](https://img.shields.io/badge/THANKS-md-ff69b4.svg)](THANKS.md)
 
 <!-- badges: end -->
 
-**igniteR** is an R package that simplifies interaction with the [Firebase REST API](https://firebase.google.com/docs/reference/rest). Designed for R users, it provides tools to authenticate, query, and manage Firebase data, making it easier to integrate Firebase capabilities into your data workflows.
+**igniteR** is an R package designed to streamline the integration of Firebase Authentication services into R applications, particularly Shiny apps. It provides functions to manage user authentication and account operations via the Firebase Authentication REST API. With tools for signing in, signing up, password resets, email verification, and account management, igniteR simplifies the implementation of secure authentication workflows for R developers.
 
 ## Features
 
-- **Authentication**: Securely connect to Firebase using API keys and authentication tokens.
-- **Data Management**: Retrieve, write, and update data in your Firebase Realtime Database or Firestore.
-- **Cloud Functions**: Trigger and interact with Firebase Cloud Functions directly from R.
-- **Scalability**: Build scalable applications with Firebase services integrated seamlessly into R projects.
+- **Authentication**: Securely identify app users with Firebase Authentication.
+- **Account Management**: Manage user accounts, including user creation, deletion, password reset, and email verification.
+- **Configuration**: Create `config.yaml` and update `.Renviron` with `createConfig`, to scale the use of Firebase projects and Authentication services into different R projects.
 
 ## Installation
 
@@ -39,7 +35,7 @@ To install the development version from GitHub, use:
 
 ```R
 # install.packages("devtools")
-devtools::install_github("your-username/igniteR")
+devtools::install_github("project-greenhouse/igniteR")
 ```
 
 ## Usage
@@ -50,13 +46,21 @@ Here's a quick example to get started:
 library(igniteR)
 
 # Set up your Firebase project credentials
-firebase_config <- firebase_auth(api_key = "YOUR_API_KEY", project_id = "YOUR_PROJECT_ID")
+createConfig(
+  api_key = "YOUR_API_KEY",
+  projectId = "YOUR_PROJECT_ID",
+  authDomain = "YOUR_AUTH_DOMAIN",
+  storageBucket = "YOUR_STORAGE_BUCKET"
+)
 
-# Retrieve data from a Firebase Realtime Database
-data <- firebase_get(firebase_config, path = "/your/data/path")
+# Sign up a new user
+signUpWithPassword("user@example.com", "password123")
 
-# Write data to Firebase
-firebase_put(firebase_config, path = "/your/data/path", data = list(name = "Example", value = 123))
+# Sign in an existing user
+auth <- signInWithPassword("user@example.com", "password123")
+
+# Send a password reset email
+resetPassword("user@example.com")
 ```
 
 ## Getting Started

@@ -11,17 +11,18 @@
 #' @examples
 #' \dontrun{
 #' # After user confirms deletion
-#' auth_result <- signInWithPassword("user@example.com", "password")
+#' auth_result <- sign_in_password("user@example.com", "password")
 #' 
 #' # Delete the account
-#' deleteAccount(auth_result$idToken)
+#' delete_account(auth_result$idToken)
 #' }
 #'
 #' @seealso
-#' \code{\link{getUserData}} to verify account deletion and retrieve user profile data.
+#' \code{\link{get_user}} to verify account deletion and retrieve user profile data.
 #'
+#' @import httr logger
 #' @export
-deleteAccount <- function(idToken) {
+delete_account <- function(idToken) {
   logger::log_appender(logger::appender_file("app.log"))
   logger::log_info("Attempting to delete user account")
   
@@ -51,7 +52,7 @@ deleteAccount <- function(idToken) {
   # Send the POST request
   response <- httr::POST(
     url = firebase_url,
-    body = httr::toJSON(payload, auto_unbox = TRUE),
+    body = jsonlite::toJSON(payload, auto_unbox = TRUE),
     encode = "json",
     httr::content_type("application/json")
   )

@@ -9,7 +9,7 @@ Description: Simplifies the integration of Firebase Authentication in R Shiny we
     offering easy-to-use functions for implementing secure user authentication, account 
     management, and user profile operations in Shiny apps. Features include email/password 
     authentication, OAuth integration, password reset capabilities, and user profile management.
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
@@ -17,12 +17,10 @@ Imports:
     httr (>= 1.4.7),
     logger,
     jsonlite (>= 1.8.9),
-    base64enc (>= 0.1-3),
-    openssl (>= 2.3.0),
-    digest (>= 0.6.37),
     yaml
 Suggests: 
     knitr,
+    pkgdown,
     rmarkdown,
     testthat (>= 3.0.0),
     shiny
