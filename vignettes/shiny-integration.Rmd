@@ -1,0 +1,121 @@
+---
+title: "Using igniteR in Shiny App Development"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using igniteR in Shiny App Development}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+This vignette demonstrates how to integrate `igniteR` into a Shiny application for user authentication and profile management. It provides a practical example of setting up Firebase Authentication within a Shiny app and deploying it.
+
+# Prerequisites
+
+1. **Firebase Project Setup**:
+   - Obtain your Firebase API key.
+   - Set the API key as an environment variable:
+   ```r
+   Sys.setenv(FIREBASE_API_KEY = "your-api-key")
+   ```
+
+2. **Package Installation**:
+   ```r
+   devtools::install_github("your_username/igniteR")
+   ```
+
+# Shiny App Example
+
+Below is a simple Shiny app demonstrating authentication and basic user operations using `igniteR`.
+
+```r
+library(shiny)
+library(igniteR)
+
+ui <- fluidPage(
+  titlePanel("Shiny App with igniteR"),
+
+  sidebarLayout(
+    sidebarPanel(
+      textInput("email", "Email"),
+      passwordInput("password", "Password"),
+      actionButton("sign_in", "Sign In"),
+      actionButton("sign_up", "Sign Up"),
+      actionButton("reset", "Reset Password"),
+      textOutput("auth_message")
+    ),
+
+    mainPanel(
+      textOutput("welcome_message"),
+      verbatimTextOutput("user_data")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  user_data <- reactiveVal(NULL)
+
+  observeEvent(input$sign_in, {
+    tryCatch({
+      auth <- signInWithPassword(input$email, input$password)
+      user_data(auth)
+      output$welcome_message <- renderText({
+        paste("Welcome,", input$email)
+      })
+    }, error = function(e) {
+      output$auth_message <- renderText({
+        paste("Error:", e$message)
+      })
+    })
+  })
+
+  observeEvent(input$sign_up, {
+    tryCatch({
+      signUpWithPassword(input$email, input$password)
+      output$auth_message <- renderText({
+        "Account created successfully. Please sign in."
+      })
+    }, error = function(e) {
+      output$auth_message <- renderText({
+        paste("Error:", e$message)
+      })
+    })
+  })
+
+  observeEvent(input$reset, {
+    tryCatch({
+      resetPassword(input$email)
+      output$auth_message <- renderText({
+        "Password reset email sent."
+      })
+    }, error = function(e) {
+      output$auth_message <- renderText({
+        paste("Error:", e$message)
+      })
+    })
+  })
+
+  output$user_data <- renderPrint({
+    req(user_data())
+    getUserData(user_data()$idToken)
+  })
+}
+
+shinyApp(ui, server)
+```
+
+# Deployment
+
+To deploy this app to a server or `shinyapps.io`:
+
+1. Ensure the `FIREBASE_API_KEY` environment variable is set on the server.
+2. Deploy the app using the `rsconnect` package:
+
+```r
+rsconnect::deployApp("path/to/your/app")
+```
+
+# Conclusion
+
+This vignette demonstrates how `igniteR` can be used to integrate Firebase Authentication into Shiny applications, enabling secure user authentication workflows.

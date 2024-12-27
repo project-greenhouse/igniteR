@@ -1,0 +1,42 @@
+---
+title: "Overview of igniteR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Overview of igniteR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+`igniteR` simplifies Firebase Authentication integration in R Shiny apps. 
+This vignette provides an overview of the package's features and how to set up Firebase Authentication.
+
+# Setup
+
+1. Configure your Firebase project:
+   - Obtain your Firebase API key.
+   - Set it as an environment variable:
+   ```r
+   Sys.setenv(FIREBASE_API_KEY = "your-api-key")
+   ```
+
+2. Install the package:
+   ```r
+   devtools::install_github("project-greenhouse/igniteR")
+   ```
+
+# Core Functions
+
+## Signing Up Users
+```r
+signUpWithPassword("newuser@example.com", "password123")
+```
+
+## Signing In Users
+```r
+auth <- signInWithPassword("newuser@example.com", "password123")
+print(auth$idToken)
+```
+
+For detailed usage, see the [User Authentication vignette](user-authentication.html).

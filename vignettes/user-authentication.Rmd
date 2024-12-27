@@ -1,0 +1,52 @@
+---
+title: "User Authentication with igniteR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{User Authentication with igniteR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+This vignette provides examples of user authentication workflows using the `igniteR` package.
+
+# Signing Up a New User
+
+```r
+# Create a new user account
+signUpWithPassword("user@example.com", "securepassword123")
+```
+
+# Signing In
+
+```r
+# Authenticate an existing user
+auth <- signInWithPassword("user@example.com", "securepassword123")
+print(auth$idToken)
+```
+
+# Retrieving User Data
+
+```r
+# Get user profile information
+user_data <- getUserData(auth$idToken)
+print(user_data$email)
+```
+
+# Password Reset
+
+```r
+# Send a password reset email
+resetPassword("user@example.com")
+```
+
+# Updating User Profile
+
+```r
+# Update profile
+updateProfile(
+  idToken = auth$idToken,
+  displayName = "Updated Name",
+  photoUrl = "https://example.com/photo.jpg"
+)

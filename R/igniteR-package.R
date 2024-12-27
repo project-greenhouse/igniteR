@@ -1,0 +1,59 @@
+#' igniteR: Firebase Authentication for R
+#'
+#' The igniteR package provides a comprehensive interface to the Firebase 
+#' Authentication REST API. It allows R users to integrate Firebase Authentication 
+#' into their applications, enabling user management, session handling, and profile updates.
+#'
+#' @section Main Features:
+#' \itemize{
+#'   \item **User Authentication**:
+#'     \itemize{
+#'       \item \code{\link{signInWithPassword}} - Sign in with email and password
+#'       \item \code{\link{signInWithOAuth}} - Sign in with OAuth providers
+#'       \item \code{\link{signUpWithPassword}} - Create new user accounts
+#'     }
+#'   \item **Account Management**:
+#'     \itemize{
+#'       \item \code{\link{resetPassword}} - Send password reset emails
+#'       \item \code{\link{changeEmail}} - Update user email
+#'       \item \code{\link{updateProfile}} - Update user profile
+#'       \item \code{\link{deleteAccount}} - Delete user accounts
+#'     }
+#'   \item **Email Operations**:
+#'     \itemize{
+#'       \item \code{\link{sendEmailVerification}} - Send email verification
+#'     }
+#'   \item **User Data Management**:
+#'     \itemize{
+#'       \item \code{\link{getUserData}} - Retrieve user profile data
+#'     }
+#' }
+#'
+#' @section Configuration:
+#' Before using the package, configure your Firebase project:
+#' \itemize{
+#'   \item Set the `FIREBASE_API_KEY` environment variable with your Firebase API key.
+#'   \item Refer to Firebase's REST API documentation for additional details.
+#' }
+#'
+#' @section Installation:
+#' \itemize{
+#'   \item From CRAN: \code{install.packages("igniteR")}
+#'   \item From GitHub: \code{devtools::install_github("your_username/igniteR")}
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # Sign up a new user
+#' signUpWithPassword("user@example.com", "password123")
+#'
+#' # Sign in
+#' auth <- signInWithPassword("user@example.com", "password123")
+#'
+#' # Get user profile
+#' profile <- getUserData(auth$idToken)
+#' }
+#'
+#' @docType _PACKAGE
+#' @name igniteR
+NULL

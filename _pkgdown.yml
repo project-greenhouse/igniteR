@@ -1,0 +1,4 @@
+url: https://hawkindynamics.github.io/igniteR/
+template:
+  bootstrap: 5
+  bootswatch: spacelab
