@@ -51,17 +51,12 @@ sign_in_password <- function(email, password) {
     stop("'email' must be a non-empty string.")
   }
   
-  if (!grepl("^[\\w.+\\-]+@[a-zA-Z\\d\\-]+\\.[a-zA-Z]{2,}$", email)) {
-    logger::log_error("Invalid email format: {email}")
-    stop("Provided 'email' is not a valid email address.")
-  }
-  
   if (missing(password) || !is.character(password) || nchar(password) == 0) {
     logger::log_error("Invalid or missing password.")
     stop("'password' must be a non-empty string.")
   }
   
-  firebase_url <- paste0("https://identitytoolkit.googleapis.com/v1/accounts:sign_in_password?key=", project_api_key)
+  firebase_url <- paste0("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=", project_api_key)
   
   # Create the request payload
   payload <- list(

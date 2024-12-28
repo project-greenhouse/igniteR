@@ -19,7 +19,8 @@
 #'   api_key = "example-key",
 #'   projectId = "example-id",
 #'   authDomain = "example-auth",
-#'   storageBucket = "example-bucket"
+#'   storageBucket = "example-bucket",
+#'   output_dir = "."
 #' )
 #' }
 #' 
@@ -50,6 +51,14 @@ create_config <- function(api_key, projectId, authDomain, storageBucket, databas
       FIREBASE_STORAGE_BUCKET = storageBucket,
       FIREBASE_DATABASE_URL = databaseURL,
       FIREBASE_APP_ID = appId
+    ),
+    shinyapps = list(
+      FIREBASE_API_KEY = api_key,
+      FIREBASE_PROJECT_ID = projectId,
+      FIREBASE_AUTH_DOMAIN = authDomain,
+      FIREBASE_STORAGE_BUCKET = storageBucket,
+      FIREBASE_DATABASE_URL = databaseURL,
+      FIREBASE_APP_ID = appId
     )
   )
   
@@ -64,24 +73,13 @@ create_config <- function(api_key, projectId, authDomain, storageBucket, databas
   })
   
   # Prepare .Renviron content
-  renviron_content <- c(
-    paste0("FIREBASE_API_KEY=", api_key),
-    paste0("FIREBASE_PROJECT_ID=", projectId),
-    paste0("FIREBASE_AUTH_DOMAIN=", authDomain),
-    paste0("FIREBASE_STORAGE_BUCKET=", storageBucket),
-    if (!is.null(databaseURL)) paste0("FIREBASE_DATABASE_URL=", databaseURL) else NULL,
-    if (!is.null(appId)) paste0("FIREBASE_APP_ID=", appId) else NULL
-  )
+  Sys.setenv("FIREBASE_API_KEY" = api_key)
+  Sys.setenv("FIREBASE_PROJECT_ID" = projectId)
+  Sys.setenv("FIREBASE_AUTH_DOMAIN" = authDomain)
+  Sys.setenv("FIREBASE_STORAGE_BUCKET" = storageBucket)
+  if (!is.null(databaseURL))  Sys.setenv("FIREBASE_DATABASE_URL" = databaseURL) else NULL
+  if (!is.null(appId))  Sys.setenv("FIREBASE_APP_ID" = appId) else NULL
   
-  # Write to .Renviron
-  renviron_path <- file.path(Sys.getenv("HOME"), ".Renviron")
-  tryCatch({
-    con <- file(renviron_path, open = "a")
-    writeLines(renviron_content, con)
-    close(con)
-    logger::log_info(".Renviron file updated with environment variables.")
-  }, error = function(e) {
-    logger::log_error("Failed to update .Renviron: {e$message}")
-    stop("Failed to update .Renviron: ", e$message)
-  })
+  logger::log_info("Environment variables updated with credentials")
 }
+

@@ -45,11 +45,6 @@ change_email <- function(idToken, newEmail, returnSecureToken = FALSE) {
     stop("'newEmail' must be a non-empty string.")
   }
   
-  if (!grepl("^[\\w.+\\-]+@[a-zA-Z\\d\\-]+\\.[a-zA-Z]{2,}$", newEmail)) {
-    logger::log_error("Invalid email format: {newEmail}")
-    stop("Provided 'newEmail' is not a valid email address.")
-  }
-  
   firebase_url <- paste0(
     "https://identitytoolkit.googleapis.com/v1/accounts:update?key=", 
     project_api_key

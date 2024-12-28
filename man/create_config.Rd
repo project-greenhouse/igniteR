@@ -44,7 +44,8 @@ create_config(
   api_key = "example-key",
   projectId = "example-id",
   authDomain = "example-auth",
-  storageBucket = "example-bucket"
+  storageBucket = "example-bucket",
+  output_dir = "."
 )
 }
 
