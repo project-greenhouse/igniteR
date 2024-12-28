@@ -36,12 +36,7 @@ reset_password <- function(email) {
     logger::log_error("Invalid or missing email.")
     stop("'email' must be a non-empty string.")
   }
-  
-  if (!grepl("^[\\w.+\\-]+@[a-zA-Z\\d\\-]+\\.[a-zA-Z]{2,}$", email)) {
-    logger::log_error("Invalid email format: {email}")
-    stop("Provided 'email' is not a valid email address.")
-  }
-  
+
   firebase_url <- paste0(
     "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=", 
     project_api_key
