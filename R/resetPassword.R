@@ -5,7 +5,7 @@
 #' environment variables.
 #'
 #' @param email A string representing the user's email address.
-#' @return Invisible NULL on success, throws an error on failure.
+#' @return text string "success" on success, throws an error on failure.
 #'
 #' @section Common Error Codes:
 #' \itemize{
@@ -59,7 +59,7 @@ reset_password <- function(email) {
   # Handle response
   if (httr::http_status(response)$category == "Success") {
     logger::log_info("Password reset email sent successfully to: {email}")
-    invisible(NULL) # Return NULL as the function doesn't generate additional output
+    return(paste0("success")) # Return NULL as the function doesn't generate additional output
   } else {
     # Fallback for non-JSON error responses
     error_message <- tryCatch({

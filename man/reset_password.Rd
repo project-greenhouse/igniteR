@@ -10,7 +10,7 @@ reset_password(email)
 \item{email}{A string representing the user's email address.}
 }
 \value{
-Invisible NULL on success, throws an error on failure.
+text string "success" on success, throws an error on failure.
 }
 \description{
 This function sends a password reset email to the specified email address using
