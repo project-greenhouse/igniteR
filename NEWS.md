@@ -1,3 +1,8 @@
+# igniteR 0.1.2
+
+* Updated success response to reset_password() function
+
+-----
 # igniteR 0.1.1
 
 * Bug fixes to Firebase API endpoints

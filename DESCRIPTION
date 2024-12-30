@@ -1,6 +1,6 @@
 Package: igniteR
 Title: Streamlined Firebase Authentication for R Shiny Applications
-Version: 0.1.1
+Version: 0.1.2
 Depends: R (>= 4.1.0)
 Authors@R: 
     person("Lauren", "Green", email = "ghouse.performance@gmail.com", role = c("aut", "cre"))
